@@ -4,12 +4,16 @@ import EeWrapper from 'src/components/EeWrapper/EeWrapper'
 // import { PrimeReactProvider } from 'primereact/api';
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { useSearchParams } from 'react-router-dom';
 
 function App() {
 
   // const [count, setCount] = useState(0)
-  const entrypoint = import.meta.env.VITE_EE_URL;
-  console.log(import.meta.env);
+  let params = new URL(document.location).searchParams;
+  
+  const entrypoint = params.get("url") ?? import.meta.env.VITE_EE_URL;
+  
+  // console.log(import.meta.env);
 
   return (
     <>
