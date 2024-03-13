@@ -107,7 +107,6 @@ class CbaFrame extends PureComponent {
 
     if (isNaN(availWidth) || isNaN(availHeight)) return defaultState;
 
-    // console.log(width, height);
     // console.log(itemWidth, itemHeight);
 
     let sfh = 1;
@@ -119,8 +118,10 @@ class CbaFrame extends PureComponent {
     // if (availWidth < itemWidth)
     sfw = Math.ceil((availWidth * 1000) / itemWidth) / 1000;
     scalingFactor = sfw;
-    if (sfh < 1 || sfw < 1) 
+    // if (sfh < 1 || sfw < 1) 
       scalingFactor = Math.min(sfh, sfw);
+
+    console.log(availWidth, availHeight,sfw, sfh);
 
     return { wrapperScaling: scalingFactor };
   };
@@ -146,9 +147,9 @@ class CbaFrame extends PureComponent {
             className="border-0 m-0 p-0 overflow-hidden cbaframe w-full"
             ref={this.iframeRef}
             style={{
-              height: "100vh",
+              // height: "100vh",
               width: itemWidth + "px",
-              //   height: itemHeight+"px"
+              height: itemHeight + "px"
               //   width: 100*(1 / wrapperScaling)+"%"
               // width: 100*(Math.ceil(1000 / wrapperScaling) / 1000)+"%"
             }}

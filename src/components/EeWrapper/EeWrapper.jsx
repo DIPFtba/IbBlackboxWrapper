@@ -35,7 +35,7 @@ function EeWrapper({ url }) {
             propagateDimensions={true}
             propagateDimensionsRate={500}
             flex={0.8}
-            className="left-pane"
+            className="left-pane max-h-screen"
             style={{overflow: "hidden"}}
           >
             <CbaFrame url={url} itemDimensions={{width: itemWidth, height: itemHeight}} ref={CbaFrameRef} />
