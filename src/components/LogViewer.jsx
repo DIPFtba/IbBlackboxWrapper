@@ -231,7 +231,7 @@ function LogViewer({
                         </div>
                     </TabPanel>
                     <TabPanel header="Scoring" headerTemplate={tabHeaderITemplate} >
-                        <div className={`text-sm flex flex-col gap-y-2 pl-2 ${className}`}>
+                        <div className={`text-sm flex flex-col gap-y-2 p-2 ${className}`}>
                             {scoringResults && scoringResults.size > 0 ? (
                                 Array.from(scoringResults.keys()).map((key, i) => {
                                     return (
@@ -246,7 +246,7 @@ function LogViewer({
                         </div>
                     </TabPanel>
                     <TabPanel header="State" headerTemplate={tabHeaderITemplate} >
-                        <div className={`text-sm flex flex-col gap-y-4 pl-2 ${className}`}>
+                        <div className={`text-sm flex flex-col gap-y-4 p-2 ${className}`}>
                             <div className="flex gap-x-4">
                                 <button className="btn grow flex items-center justify-center gap-x-2" type="button" onClick={sendGetState}>
                                     <IoSave />
