@@ -75,3 +75,15 @@ button.btn {
     @apply border border-slate-300 bg-slate-100;
   }
 }
+
+body .p-tabview-nav{
+  @apply font-bold bg-black text-white text-sm;
+}
+
+body .p-tabview .p-tabview-nav-link{
+  @apply border-none rounded-none p-2 py-2 bg-black text-gray-300; 
+
+}
+body .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+  @apply border-primary border-b-2 text-white bg-black; 
+}
