@@ -10,6 +10,7 @@ import { ReflexContainer, ReflexSplitter, ReflexElement } from "react-reflex";
 import "react-reflex/styles.css";
 import LogViewer from "../LogViewer";
 import CbaFrame from "../CbaFrame";
+import VideoRecorderProvider from "src/context/VideoRecorderContext";
 
 
 class EeWrapperClass extends PureComponent {
@@ -46,7 +47,7 @@ class EeWrapperClass extends PureComponent {
   }
 
   handleResize = () => {
-    this.setState({dimensions: this.getWindowDimensions()});
+    this.setState({ dimensions: this.getWindowDimensions() });
   }
 
   clearLogs = () => { this.setState({ traceLogs: [] }); };
@@ -113,36 +114,38 @@ class EeWrapperClass extends PureComponent {
 
     return (
       <>
-        <div
-          id="item-wrapper"
-          className="overflow-hidden w-full h-full"
-          style={{
-            height: this.state.dimensions.height + "px",
-            width: this.state.dimensions.width + "px",
-          }}
-        >
-          <ReflexContainer orientation="vertical">
-            <ReflexElement
-              propagateDimensions={true}
-              propagateDimensionsRate={500}
-              flex={0.7}
-              className="left-pane max-h-screen"
-              style={{ overflow: "hidden" }}
-            >
-              <CbaFrame url={this.props.url} itemDimensions={{ width: itemWidth, height: itemHeight }} ref={this.CbaFrameRef} />
-            </ReflexElement>
+        <VideoRecorderProvider>
+          <div
+            id="item-wrapper"
+            className="overflow-hidden w-full h-full"
+            style={{
+              height: this.state.dimensions.height + "px",
+              width: this.state.dimensions.width + "px",
+            }}
+          >
+            <ReflexContainer orientation="vertical">
+              <ReflexElement
+                propagateDimensions={true}
+                propagateDimensionsRate={500}
+                flex={0.7}
+                className="left-pane max-h-screen"
+                style={{ overflow: "hidden" }}
+              >
+                <CbaFrame url={this.props.url} itemDimensions={{ width: itemWidth, height: itemHeight }} ref={this.CbaFrameRef} />
+              </ReflexElement>
 
-            <ReflexSplitter
-              className="flex items-center"
-              style={{ width: "10px" }}
-            ></ReflexSplitter>
+              <ReflexSplitter
+                className="flex items-center"
+                style={{ width: "10px" }}
+              ></ReflexSplitter>
 
-            <ReflexElement minSize={600} className="right-pane">
-              <LogViewer className={`py-2`} traceLogs={this.state.traceLogs} scoringResults={this.state.scoringResults} taskStates={this.state.taskStates} cbaFrame={this.CbaFrameRef} onClearLogs={this.clearLogs} />
-              {/* <LogViewer className={`py-2`} cbaFrame={CbaFrameRef} /> */}
-            </ReflexElement>
-          </ReflexContainer>
-        </div>
+              <ReflexElement minSize={600} className="right-pane">
+                <LogViewer className={`py-2`} traceLogs={this.state.traceLogs} scoringResults={this.state.scoringResults} taskStates={this.state.taskStates} cbaFrame={this.CbaFrameRef} onClearLogs={this.clearLogs} />
+                {/* <LogViewer className={`py-2`} cbaFrame={CbaFrameRef} /> */}
+              </ReflexElement>
+            </ReflexContainer>
+          </div>
+        </VideoRecorderProvider>
       </>
     );
   }

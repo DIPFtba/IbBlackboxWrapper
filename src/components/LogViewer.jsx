@@ -12,6 +12,7 @@ import { ReflexContainer, ReflexSplitter, ReflexElement } from "react-reflex";
 import CbaFrame from "./CbaFrame";
 import { IBContext } from "./EeWrapper/IBContext";
 import ReactJson from "@microlink/react-json-view";
+import VideoRecorder from "./VideoRecorder";
 
 function LogViewer({
     cbaFrame,
@@ -185,7 +186,7 @@ function LogViewer({
         return (
             <div style={{maxHeight: `${Math.floor(dimensions.height)}px`}} className={`overflow-y-hidden overflow-x-hidden w-full`}>
                 <TabView activeIndex={activeTabIndex} onTabChange={(e) => setActiveTabIndex(e.index)} panelContainerClassName="p-0">
-                    <TabPanel header="Trace" headerTemplate={tabHeaderITemplate} >
+                    <TabPanel header="TraceLog" headerTemplate={tabHeaderITemplate} >
                         <div className={`flex flex-col ${className}`}>
                             <div className="flex gap-x-4 px-2 py-2 bg-gray-400 items-center">
                                 <label className="text-white text-sm font-bold">
@@ -272,6 +273,11 @@ function LogViewer({
                             {(!taskStates || taskStates.length == 0) && (
                                 <div>no states yet</div>
                             )}
+                        </div>
+                    </TabPanel>
+                    <TabPanel header="Recorder" headerTemplate={tabHeaderITemplate} >
+                        <div className={`text-sm flex flex-col gap-y-2 p-2 ${className}`}>
+                            <VideoRecorder traceLogs={traceLogs} />
                         </div>
                     </TabPanel>
                 </TabView>
